@@ -36,7 +36,7 @@ module.exports.send = function send(ctx, discord, text) {
 	ctx.telegram.getUserProfilePhotos(ctx.message.from.id).then(e => {
 	var id = e.photos[0][0].file_id;
 	// Get the file id and get the attachment link
-	ctx.telegram.getFileLink(id).then(url =>{
+	ctx.telegram.getFileLink(id).then(avatar =>{
 
 		/*
 			We made two types of sending nessage to Discord.
@@ -48,7 +48,7 @@ module.exports.send = function send(ctx, discord, text) {
 			if (typeof text === "object") {
                                 return channel.send(ctx.message.from.first_name+": "+text.caption, text.file).catch(console.error);
                         }
-			var attachment = new MessageAttachment(url, 'avatar.jpg');
+			var attachment = new MessageAttachment(avatar.href, 'avatar.jpg');
 			// Because telegram file url includes telegram bots token, We generate another URL.
 			channel.send(attachment).then(e => {
 			       let embed = new MessageEmbed()
@@ -65,22 +65,22 @@ module.exports.send = function send(ctx, discord, text) {
 				require("fs").writeFileSync("WebhookID", createdWebhook.id);
 			   	if ( typeof text === "object" ) return createdWebhook.send(text.caption, {
 				  username: ctx.message.from.first_name,
-		 		  avatarURL: url,
+		 		  avatarURL: avatar.href,
 			 	  files:[text.file]
 			  	}).catch(console.error);
 				return createdWebhook.send(filter(text), {
 				  username: ctx.message.from.first_name,
-			 	  avatarURL: url
+			 	  avatarURL: avatar.href
 			  	}).catch(console.error);
 			});
 			if ( typeof text === "object" ) return webhook.send(text.caption, {
 				username: ctx.message.from.first_name,
-				avatarURL: url,
+				avatarURL: avatar.href,
 				files:[text.file]
 			}).catch(console.error);
 			webhook.send(text, {
 				username: ctx.message.from.first_name,
-				avatarURL: url
+				avatarURL: avatar.href
 			}).catch(console.error);
 		}).catch(console.error);
 	}
