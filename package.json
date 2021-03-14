@@ -11,10 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "request": "^2.88.2",
-    "stream-cache": "0.0.2",
     "telegraf": "^4.x",
-    "ws": "^7.4.4"
   },
   "description": "A simple discord and telegram bridge bots written in nodejs.",
   "repository": {
