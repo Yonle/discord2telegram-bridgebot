@@ -64,9 +64,6 @@ module.exports.send = function send(ctx, discord, text) {
 			var webhook = webhooks.first();
 			if (!webhook) channel.createWebhook("Telegram User").then(createdWebhook => {
 				require("fs").writeFileSync("WebhookID", createdWebhook.id);
-			   	if (text.includes("discord.gg")||text.includes("invite.gg")) {
-			  		return ctx.reply("We do not allow any discord link here.");
-			   	}
 			   	if ( typeof text === "object" ) return createdWebhook.send(text.caption, {
 				  username: ctx.message.from.first_name,
 		 		  avatarURL: url,
