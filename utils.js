@@ -48,17 +48,15 @@ module.exports.send = function send(ctx, discord, text) {
 			if (typeof text === "object") {
                                 return channel.send(ctx.message.from.first_name+": "+text.caption, text.file).catch(console.error);
                         }
-			get(url, stream => {
-				var attachment = new MessageAttachment(stream, 'avatar.jpg');
-				// Because telegram file url includes telegram bots token, We generate another URL.
-				channel.send(attachment).then(e => {
-			 	       let embed = new MessageEmbed()
-				       .setAuthor(ctx.message.from.first_name, e.attachments.first().proxyURL)
-				       .setDescription(ctx.message.text)
-				       .setColor("RANDOM");
-				       channel.send(embed).then(() => e.delete()).catch(error => { console.error(error);e.delete() });
-                                }).catch(console.error);
-			}).on('error', console.error);
+			var attachment = new MessageAttachment(url, 'avatar.jpg');
+			// Because telegram file url includes telegram bots token, We generate another URL.
+			channel.send(attachment).then(e => {
+			       let embed = new MessageEmbed()
+			       .setAuthor(ctx.message.from.first_name, e.attachments.first().proxyURL)
+			       .setDescription(ctx.message.text)
+			       .setColor("RANDOM");
+			       channel.send(embed).then(() => e.delete()).catch(error => { console.error(error);e.delete() });
+                        }).catch(console.error);
 		} else {
 
 		channel.fetchWebhooks(require("fs").readFileSync("WebhookID").toString()).then(webhooks => {
