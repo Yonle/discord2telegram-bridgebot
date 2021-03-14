@@ -1,0 +1,28 @@
+{
+  "name": "discord2telegram-bridgebot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Yonle",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "request": "^2.88.2",
+    "stream-cache": "0.0.2",
+    "telegraf": "^4.x",
+    "ws": "^7.4.4"
+  },
+  "description": "A simple discord and telegram bridge bots written in nodejs.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yonle/discord2telegram-bridgebot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Yonle/discord2telegram-bridgebot/issues"
+  },
+  "homepage": "https://github.com/Yonle/discord2telegram-bridgebot#readme"
+}
