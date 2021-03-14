@@ -44,9 +44,6 @@ module.exports.send = function send(ctx, discord, text) {
 			Webhook only works if the bots has MANAGE_WEBHOOKS permisson.
 		*/
 		if (channel.guild.me.hasPermission("MANAGE_WEBHOOKS") === false) {
-			if (text.includes("discord.gg")||text.includes("invite.gg")) {
-			  	return ctx.reply("We do not allow any discord link here.");
-		 	}
 			if (typeof text === "object") {
                                 return channel.send(ctx.message.from.first_name+": "+text.caption, text.file).catch(console.error);
                         }
@@ -58,7 +55,8 @@ module.exports.send = function send(ctx, discord, text) {
 				       .setAuthor(ctx.message.from.first_name, e.attachments.first().proxyURL)
 				       .setDescription(ctx.message.text)
 				       .setColor("RANDOM");
-				       channel.send(embed).then(() => e.delete()).catch(error => { console.error(error);e.delete() });}).catch(console.error);
+				       channel.send(embed).then(() => e.delete()).catch(error => { console.error(error);e.delete() });
+                                }).catch(console.error);
 			}).on('error', console.error);
 		} else {
 
