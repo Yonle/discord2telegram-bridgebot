@@ -17,7 +17,7 @@ module.exports.getFileURL = function getFileURL(ctx) {
 		var photo = message.photo;
 		// If there's no photo
 		if (!photo) {
-			var file = message.document || message.audio || message.voice || message.animation || message.video || message.videonote || message.video_note;
+			var file = message.document || message.audio || message.voice || message.animation || message.video || message.videonote || message.video_note || message.sticker;
 			if (!file) return rej("NO_ATTACHMENT");
 			getFileLink(ctx, file.file_id).then(res).catch(rej);
 		} else if (photo) {
