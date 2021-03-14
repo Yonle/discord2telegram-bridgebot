@@ -17,7 +17,11 @@ discord.on("message", (message) => {
 });
 
 
-discord.login(process.env.DISCORD_TOKEN);
+discord.login(process.env.DISCORD_TOKEN).then(() => {
+        console.log("--> [Discord] Discord Bridge Ready");
+        console.log("--> [Discord] Logged as", discord.user.tag);
+}).catch(console.error);
+
 // Here is where telegram bot Begins.
 
 telegram.on("message", function (ctx) {
@@ -38,4 +42,7 @@ telegram.on("message", function (ctx) {
 
 // Handle all telegram error.
 telegram.catch(console.error);
-telegram.launch();
+telegram.launch().then(() => {
+        console.log("--> [Telegram] Telegram Bridge Ready");
+        console.log(`--> [Telegram] Logged as @${bot.botInfo}`);
+}).catch(console.error);
