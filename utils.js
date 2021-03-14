@@ -1,4 +1,5 @@
 const { get } = require("https");
+const { MessageAttachment, MessageEmbed } = require("discord.js");
 
 module.exports.filter = function filter(content) {
 	if (!content) return "";
