@@ -44,5 +44,5 @@ telegram.on("message", function (ctx) {
 telegram.catch(console.error);
 telegram.launch().then(() => {
         console.log("--> [Telegram] Telegram Bridge Ready");
-        console.log(`--> [Telegram] Logged as @${bot.botInfo}`);
+        console.log(`--> [Telegram] Logged as @${bot.botInfo.username}`);
 }).catch(console.error);
