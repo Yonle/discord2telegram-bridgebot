@@ -1,29 +1,8 @@
-const http = require("http");
-const WebServer = require("ws").Server;
 const { filter, getFileURL, send, getStream } = require("./utils");
 const telegraf = require("telegraf").Telegraf;
 const telegram = new telegraf(process.env.TELEGRAM_TOKEN);
-const get = require("https").get;
 const { Client, MessageEmbed, MessageAttachment } = require("discord.js");
 const discord = new Client();
-const StreamCache = require("stream-cache");
-const server = http.createServer();
-var cache = {};
-cache.avatar = new Map();
-cache.message = new Map();
-
-
-server.on("request", (req, res) => {
-	if (req.url.startsWith("/user/avatar/")) {
-		var userID = req.url.slice(13);
-		if (!cache.avatar.has(userID)) return res.end("User Not Found");
-		return request(cache.avatar.get(userID)).pipe(res);
-	}
-	res.end("APi coming soon....");
-});
-var wss = new WebServer({ server });
-
-server.listen(3000);
 
 // Here is where discord bot Begins.
 
@@ -57,5 +36,6 @@ telegram.on("message", function (ctx) {
 	});
 });
 
+// Handle all telegram error.
 telegram.catch(console.error);
 telegram.launch();
