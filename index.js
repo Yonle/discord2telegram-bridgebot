@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { filter, getFileURL, send, getStream } = require("./utils");
 const telegraf = require("telegraf").Telegraf;
 const telegram = new telegraf(process.env.TELEGRAM_TOKEN);
