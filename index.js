@@ -32,7 +32,7 @@ telegram.on("message", function (ctx) {
 	if (text.startsWith("/") && text.length > 1) return;
 	getFileURL(ctx).then(response => {
 		var attachment = new MessageAttachment(response.href, response.file_name);
-		send(ctx, discord, { caption: text, file: attachment, url:response.href });
+		send(ctx, discord, { caption: filter(text), file: attachment, url:response.href });
 	}).catch(reason => {
 		// If it's not because no attachment, Log it instead of sending message
 		if (reason !== "NO_ATTACHMENT") return console.error(reason);
