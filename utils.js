@@ -20,7 +20,7 @@ module.exports.getFileURL = function getFileURL(ctx) {
 		if (!photo) {
 			var file = message.document || message.audio || message.voice || message.animation || message.video || message.videonote || message.video_note || message.sticker;
 			if (!file) return rej("NO_ATTACHMENT");
-			getFileLink(ctx, file.file_id).then(response => {
+			return getFileLink(ctx, file.file_id).then(response => {
                                 response.file_name = file.file_name;
                                 return res(response);
                         }).catch(rej);
