@@ -90,12 +90,8 @@ module.exports.send = function send(ctx, discord, text) {
 	}).catch(console.error);
 };
 
-function getFileLink(ctx, id) {
-	return new Promise((res, rej) => {
-		ctx.tg.getFileLink(id).then(response => {
-			res(response);
-		}).catch(rej);
-	});
+async function getFileLink(ctx, id) {	
+	return await ctx.tg.getFileLink(id);
 };
 
 function getStream(url) {
