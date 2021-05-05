@@ -34,12 +34,17 @@ module.exports.getFileURL = function getFileURL(ctx) {
 };
 
 module.exports.send = function send(ctx, discord, text) {
-	discord.channels.fetch(process.env.CHANNEL_ID).then(channel => {
-        // Get telegram user avatar
-	ctx.telegram.getUserProfilePhotos(ctx.message.from.id).then(e => {
-	var id = e.photos[0][0].file_id;
+	discord.channels.fetch(process.env.CHANNEL_ID).then(async channel => {
+    // Get telegram user avatar
+	let e = await ctx.telegram.getUserProfilePhotos(ctx.message.from.id) || null;
+	let id = (e.photos[0] || [{file_id: null}])[0].file_id;
 	// Get the file id and get the attachment link
-	ctx.telegram.getFileLink(id).then(avatar =>{
+	let avatar;
+	try {
+		avatar = await ctx.telegram.getFileLink(id);
+	} catch (error) {
+		avatar = { href: "https://logo-logos.com/wp-content/uploads/2016/11/Telegram_logo.png"};
+	}
 
 		/*
 			We made two types of sending nessage to Discord.
@@ -63,15 +68,15 @@ module.exports.send = function send(ctx, discord, text) {
 		} else {
 
 		channel.fetchWebhooks(require("fs").readFileSync("WebhookID").toString()).then(webhooks => {
-			var webhook = webhooks.first();
-			if (!webhook) channel.createWebhook("Telegram User").then(createdWebhook => {
+			let webhook = webhooks.first();
+			if (!webhook || !webhook.send) channel.createWebhook("Telegram User").then(createdWebhook => {
 				require("fs").writeFileSync("WebhookID", createdWebhook.id);
 			   	if ( typeof text === "object" ) return createdWebhook.send(text.caption, {
 				  username: ctx.message.from.first_name,
 		 		  avatarURL: avatar.href,
 			 	  files:[text.file]
 			  	}).catch(console.error);
-				return createdWebhook.send(filter(text), {
+				return createdWebhook.send(text, {
 				  username: ctx.message.from.first_name,
 			 	  avatarURL: avatar.href
 			  	}).catch(console.error);
@@ -87,9 +92,7 @@ module.exports.send = function send(ctx, discord, text) {
 			}).catch(console.error);
 		}).catch(console.error);
 	}
-
-	}).catch(console.error);
-	}).catch(console.error);
+	
 	}).catch(console.error);
 };
 

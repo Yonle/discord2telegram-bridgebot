@@ -11,8 +11,8 @@
   "license": "DBAD",
   "dependencies": {
     "discord.js": "^12.x",
-    "telegraf": "^4.x",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "telegraf": "^4.x"
   },
   "description": "A simple discord and telegram bridge bots written in nodejs.",
   "repository": {
