@@ -47,7 +47,7 @@ module.exports.send = function send(ctx, discord, text) {
             try {
                 avatar = await ctx.telegram.getFileLink(id);
             } catch (error) {
-                avatar = { href: "https://logo-logos.com/wp-content/uploads/2016/11/Telegram_logo.png" };
+                avatar = { href: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/512px-Telegram_2019_Logo.svg.png" };
             }
 
             /*
