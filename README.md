@@ -1,7 +1,7 @@
 # NOTICE
-If you we're buy a code that simillar with this repo, Maybe you have been deceived. This code can be obtained for free on github without any fees. For the seller who gets money from this repo code, ****fuck you!****  We make this code for everyone and we build it on a non-profit basis, Not only is it illegal, but you actually benefit from it and you even bother someone who is looking for money, Even you sell it without our permission. That's very embarrassing.
+As i'm already stopping developing Discord Bot, This project is completely deprecated. It's using Discord.js v12 which is outdated for some reasons.
 
-Maybe that's all, Hope you enjoy this code.
+This bot may still work if Doscord API still support Discord.js v12. And still depend of your luck. I do not guarantee 100% that this project will work again. Use it at your own risk.
 
 # discord2telegram-bridgebot
 A simple discord and telegram bridge bots written in nodejs.
@@ -20,5 +20,4 @@ npm install
 Rename `.env.example` file into `.env` file and fill all required information in that file.
 
 ## Community
-- [Discord](https://quickstream.yonle.repl.co/discord)
 - [Telegram](https://t.me/yonlecoder)
